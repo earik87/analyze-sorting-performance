@@ -1,10 +1,17 @@
 import time
 import random
 
-# ------------- Get inputs from user
+# Get inputs from user
 size_of_list = int(input("What size of the list you want to create? "))
-run_time = int(input("How many times you want to run? "))
 
+bubble_sorted_arr       = []
+insertion_sorted_arr    = []
+selection_sorted_arr    = []
+merge_sorted_arr        = []
+quick_sorted_arr        = []
+builtin_sorted_arr      = []
+
+# Generate unsorted list to be sorted.
 def gen_rand_numb(list_length, list_range):
     randomlist = []
     for num in range(list_length):
@@ -21,6 +28,7 @@ def bubblesort(arr):
                 if(arr[num] > arr[num+1]):
                     swap_happened = True
                     arr[num], arr[num+1] = arr[num+1], arr[num]
+    return arr
 
 # Define insertion sort.
 def insertionsort(arr):
@@ -34,6 +42,7 @@ def insertionsort(arr):
                 comp_index -= 1
             else:
                 break
+    return arr
 
 # Define Selection Sort.
 def selectionsort(arr):
@@ -41,6 +50,7 @@ def selectionsort(arr):
         for num in range (elem + 1, len(arr)):
             if(arr[elem] > arr[num]):
                 arr[elem], arr[num] = arr[num], arr[elem]
+    return arr
 
 # Define Merge Sort. 
 def conquer(arr1,arr2):
@@ -71,14 +81,14 @@ def divide_arr(arr):
         return conquer(l1, l2)
 
 def mergesort(arr):
-    divide_arr(arr)
+    return(divide_arr(arr))
 
 # Define Quick Sort
 def quicksort(arr):
     if len(arr) < 2:
         return arr
     else:
-        pivot = arr[-1]
+        pivot = arr[len(arr)//2]
         smaller, equal, larger = [], [], []
         for num in arr:
             if num < pivot:
@@ -88,42 +98,46 @@ def quicksort(arr):
             else:
                 larger.append(num)
         return quicksort(smaller) + equal + quicksort(larger)
+    
+# Python built-in Sort
+def builtinsort(arr):
+    arr.sort()
+    return arr
 
 def algo_analyzer(func_name, list):
     start_time = time.time()
-    if func_name == "sort":
-        list.sort()
-    else:
-        func_name(list)
+
+    sorted_arr = func_name(list)
+
     end_time = time.time()
     time_elapsed = 0.0
-    time_elapsed = round(end_time - start_time,3)
-    if func_name =="sort":
-        print(f"Built-in sort\t took {time_elapsed} seconds")
-    else:
-        print(f"{func_name.__name__.capitalize()}\t took {time_elapsed} seconds")
+    time_elapsed = round(end_time - start_time, 3)
+ 
+    print(f"{func_name.__name__.capitalize()[:-4]} Sort\t took {time_elapsed} seconds")
+
+    return sorted_arr
 
 def run_analyzer():
-    for run in range(run_time):
-        # we need to re-create lists everytime we run the for loop, since they are bein sorted.
-        arr = gen_rand_numb(size_of_list, size_of_list) # this is a generate list + used in bubble sort. 
-        arr1 = arr.copy() # input for insertion sort.
-        arr2 = arr.copy() # input for selection sort.
-        arr3 = arr.copy() # input for merge sort.
-        arr4 = arr.copy() # input for quick sort.
-        arr5 = arr.copy() # input for built-in sort.
+    # create unsorted array.  
+    unsorted_arr = gen_rand_numb(size_of_list, size_of_list) 
+    
+    # Print seperater with 40 times dashes.
+    print("-" * 40)
+    
+    # Run algo analyzer for every sorting algo. Insert copy of unsorted_arr
+    # each time since we sort arrays in place.
+    bubble_sorted_arr       = algo_analyzer(bubblesort, unsorted_arr.copy())
+    insertion_sorted_arr    = algo_analyzer(insertionsort, unsorted_arr.copy())
+    selection_sorted_arr    = algo_analyzer(selectionsort, unsorted_arr.copy())
+    merge_sorted_arr        = algo_analyzer(mergesort, unsorted_arr.copy())
+    quick_sorted_arr        = algo_analyzer(quicksort, unsorted_arr.copy())
+    builtin_sorted_arr      = algo_analyzer(builtinsort, unsorted_arr.copy()) 
 
-        print(f"Run: {run + 1} ")
+    # Print seperater with 40 times dashes.
+    print("-" * 40)
 
-        algo_analyzer(bubblesort, arr)
-        algo_analyzer(insertionsort, arr1)
-        algo_analyzer(selectionsort, arr2)
-        algo_analyzer(mergesort, arr3)
-        algo_analyzer(quicksort, arr4)
-        algo_analyzer("sort", arr5) # Built-in python sort.
-        
-        print("-" * 40)
+    return(bubble_sorted_arr, insertion_sorted_arr, selection_sorted_arr,
+            merge_sorted_arr, quick_sorted_arr, builtin_sorted_arr)
 
-if __name__ == "__main__":
+if __name__ == "__main__": 
     run_analyzer()
-
