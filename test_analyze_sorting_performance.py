@@ -1,5 +1,5 @@
 import unittest
-from analyze_sorting_performance import *
+from analyze_sorting_performance import run_analyzer
 
 bubble_sorted_arr, insertion_sorted_arr, selection_sorted_arr, merge_sorted_arr, quick_sorted_arr, builtin_sorted_arr = run_analyzer()
 
