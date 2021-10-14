@@ -12,10 +12,10 @@ quick_sorted_arr        = []
 builtin_sorted_arr      = []
 
 # Generate unsorted list to be sorted.
-def gen_rand_numb(list_length, list_range):
+def gen_rand_numb(list_length):
     randomlist = []
     for num in range(list_length):
-        randomlist.append(random.randint(1,list_range))
+        randomlist.append(random.randint(1,list_length))
     return(randomlist)
 
 # ------------- Define Sorting Algorithms ------------
