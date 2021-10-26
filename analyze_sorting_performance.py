@@ -11,27 +11,60 @@ merge_sorted_arr        = []
 quick_sorted_arr        = []
 builtin_sorted_arr      = []
 
-# Generate unsorted list to be sorted.
 def gen_rand_numb(list_length):
+    '''
+    Returns a list of unsorted integers.
+
+    Parameters:
+        list_length (int): The length of the list to be generated.
+
+    Returns:
+        randomlist (list): List of integers (unsorted).
+    '''
+
     randomlist = []
+
     for num in range(list_length):
         randomlist.append(random.randint(1,list_length))
+
     return(randomlist)
 
 # ------------- Define Sorting Algorithms ------------
-# Define bubble sort.
-def bubblesort(arr):
+def bublesort(arr):
+    '''
+    Returns a sorted list of a given list by using bubble sorting.
+
+    Parameters:
+        arr (list): List to be sorted.
+
+    Returns:
+        arr (list): List that has been sorted.
+    '''
+
     swap_happened = True
+
     while swap_happened:
         swap_happened = False
+
         for num in range(len(arr) - 1):
+
                 if(arr[num] > arr[num+1]):
                     swap_happened = True
                     arr[num], arr[num+1] = arr[num+1], arr[num]
+
     return arr
 
-# Define insertion sort.
 def insertionsort(arr):
+    '''
+    Returns a sorted list of a given list by using insertion sorting.
+
+    Parameters:
+        arr (list): List to be sorted.
+
+    Returns:
+        arr (list): List that has been sorted.
+    '''
+
     key_index = 1
     for key_index in range(1, len(arr)):
         comp_index = key_index - 1
@@ -44,8 +77,16 @@ def insertionsort(arr):
                 break
     return arr
 
-# Define Selection Sort.
 def selectionsort(arr):
+    '''
+    Returns a sorted list of a given list by using selection sorting.
+
+    Parameters:
+        arr (list): List to be sorted.
+
+    Returns:
+        arr (list): List that has been sorted.
+    '''
     for elem in range (len(arr)-1):
         for num in range (elem + 1, len(arr)):
             if(arr[elem] > arr[num]):
@@ -81,30 +122,75 @@ def divide_arr(arr):
         return conquer(l1, l2)
 
 def mergesort(arr):
+    '''
+    Returns a sorted list of a given list by using merge sorting.
+
+    Parameters:
+        arr (list): List to be sorted.
+
+    Returns:
+        arr (list): List that has been sorted.
+    '''
+
     return(divide_arr(arr))
 
-# Define Quick Sort
 def quicksort(arr):
+    '''
+    Returns a sorted list of a given list by using quick sorting.
+
+    Parameters:
+        arr (list): List to be sorted.
+
+    Returns:
+        arr (list): List that has been sorted.
+    '''
+
     if len(arr) < 2:
         return arr
     else:
         pivot = arr[len(arr)//2]
         smaller, equal, larger = [], [], []
+
         for num in arr:
+
             if num < pivot:
                 smaller.append(num)
             elif num == pivot:
                 equal.append(num)
             else:
                 larger.append(num)
+
         return quicksort(smaller) + equal + quicksort(larger)
     
-# Python built-in Sort
 def builtinsort(arr):
+    '''
+    Returns a sorted list of a given list by using built-in (tim-sort) sorting.
+
+    Parameters:
+        arr (list): List to be sorted.
+
+    Returns:
+        arr (list): List that has been sorted.
+    '''
+
     arr.sort()
+
     return arr
 
 def algo_analyzer(func_name, list):
+    '''
+    Returns a sorted list of a given list by using built-in (tim-sort) sorting.
+    Prints out the name of sorting algorithm and time it takes to sort a given
+    array. 
+
+    Parameters:
+        func_name (str): Name of the sorting algorithm.
+        list (list): List to be sorted.
+
+    Returns:
+        sorted_arr (list): List that is sorted.
+    '''
+
     start_time = time.time()
 
     sorted_arr = func_name(list)
@@ -118,8 +204,23 @@ def algo_analyzer(func_name, list):
     return sorted_arr
 
 def run_analyzer():
+    '''
+    Generate a list of random numbers, and sort it by using sorting algorithms.
+    At the end, return lists from each sorting algorithm execution.
+
+    Parameters:
+
+    Returns:
+        bubble_sorted_arr (list): Sorted list via bubble sort.  
+        insertion_sorted_arr (list): Sorted list via insertion sort.
+        selection_sorted_arr (list): Sorted list via selection sort.
+        merge_sorted_arr (list): Sorted list via merge sort.
+        quick_sorted_arr (list): Sorted list via quick sort.
+        builtin_sorted_arr (list): Sorted list via built-in sort.
+    '''
+
     # create unsorted array.  
-    unsorted_arr = gen_rand_numb(size_of_list, size_of_list) 
+    unsorted_arr = gen_rand_numb(size_of_list) 
     
     # Print seperater with 40 times dashes.
     print("-" * 40)
