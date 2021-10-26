@@ -11,12 +11,3 @@ It generates a list of random numbers to be sorted. For this, a certain list siz
 An example of script execution and performance results;
 
 ![image](assets/execution.png)
-
-## Testing
-
-Run the test file in the repo.
-
-`python test_analyze_sorting_performance.py`
-
-Execution;
-![image](https://user-images.githubusercontent.com/36437947/136148946-3e13f67a-406f-46f7-a3ac-95df8dad9519.png)
