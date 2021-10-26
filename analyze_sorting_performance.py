@@ -93,7 +93,6 @@ def selectionsort(arr):
                 arr[elem], arr[num] = arr[num], arr[elem]
     return arr
 
-# Define Merge Sort. 
 def conquer(arr1,arr2):
     sorted_arr = []
     i, j = 0, 0
