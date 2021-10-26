@@ -10,7 +10,7 @@ It generates a list of random numbers to be sorted. For this, a certain list siz
 
 An example of script execution and performance results;
 
-![image](https://user-images.githubusercontent.com/36437947/136147544-d956367c-a974-4ace-a689-c9efdcbf36cb.png)
+![image](assets/execution.png)
 
 ## Testing
 
