@@ -1,7 +1,10 @@
 # analyze-sorting-performance
 Python script calculates required time to run following sorting algorithms; bubble sort, insertion sort, selection sort, merge sort, quick sort and built-in python sort.
 
-## Usage
+### Requirements
+Python 3.
+
+### Usage
 After downloading (or cloning the script), run python code in your terminal. 
 
 `python analyze_sorting_performance.py`
